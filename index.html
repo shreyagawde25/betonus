@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Betonus | Server Security Made Simple</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="hero">
+      <nav class="top-nav" aria-label="Main navigation">
+        <div class="logo">Betonus</div>
+        <div class="nav-controls">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle dark mode">☀️</button>
+          <a class="nav-cta" href="#demo">Book a Demo</a>
+        </div>
+      </nav>
+
+      <section class="hero-content" aria-labelledby="hero-title">
+        <p class="eyebrow">Security for Everyone</p>
+        <h1 id="hero-title">Keep your servers safe without needing a security degree.</h1>
+        <p class="subhead">
+          Betonus watches your systems 24/7, explains problems in plain language,
+          and shows your team exactly what to do next.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#features">See how it works</a>
+          <a class="btn btn-secondary" href="#trust">Why people trust us</a>
+        </div>
+      </section>
+    </header>
+
+    <main id="main">
+      <section id="features" class="panel" aria-labelledby="features-title">
+        <h2 id="features-title">Simple by design</h2>
+        <p class="section-intro">Built for busy teams that need clear decisions, not technical jargon.</p>
+        <div class="cards">
+          <article class="card">
+            <h3>Clear alerts</h3>
+            <p>Get fast warnings with a plain-English summary of what happened and what it means.</p>
+          </article>
+          <article class="card">
+            <h3>Guided response</h3>
+            <p>Follow step-by-step actions to contain issues and protect your users with confidence.</p>
+          </article>
+          <article class="card">
+            <h3>Trust dashboard</h3>
+            <p>See your security health in one place with simple status signals your whole team can understand.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="trust" class="panel panel-alt" aria-labelledby="trust-title">
+        <h2 id="trust-title">Your security status, translated</h2>
+        <ul class="checklist">
+          <li><strong>What happened:</strong> “A login attempt came from a new country.”</li>
+          <li><strong>How serious:</strong> “Medium risk. Review this today.”</li>
+          <li><strong>What to do:</strong> “Temporarily lock access and confirm account ownership.”</li>
+        </ul>
+      </section>
+
+      <section id="demo" class="panel cta-panel" aria-labelledby="demo-title">
+        <h2 id="demo-title">Ready to make cybersecurity understandable?</h2>
+        <p>Start with a short walkthrough designed for non-technical teams.</p>
+        <a class="btn btn-primary" href="mailto:hello@betonus.io">Start with a free walkthrough</a>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+        const storedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Applies theme state by toggling the `.dark` class on <html>.
+        function setTheme(theme) {
+          const isDark = theme === 'dark';
+          root.classList.toggle('dark', isDark);
+          toggle.textContent = isDark ? '🌙' : '☀️';
+          toggle.setAttribute('aria-pressed', String(isDark));
+          toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+
+        // Initial load: localStorage preference wins, then system preference.
+        const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+        setTheme(initialTheme);
+
+        // Toggle and persist the user preference.
+        toggle.addEventListener('click', () => {
+          const nextTheme = root.classList.contains('dark') ? 'light' : 'dark';
+          localStorage.setItem('theme', nextTheme);
+          setTheme(nextTheme);
+        });
+      })();
+    </script>
+  </body>
+</html>
